@@ -5,8 +5,8 @@ let play = document.getElementById('play');
 let boxGrid = document.querySelector('.grid-container');
 let reset  = document.getElementById('reset');
 let bombs = [];
-console.log(bombs)
-
+let endGame = document.querySelector('.game-over');
+let punteggio = 0;
 //nuova funzione per implementare sia il grid che anche l'array:
 function gridCreator(numeri) {
     //un ciclo che contionua fino a quando no raggiunge i 16 elementi dell'array in modo random.
@@ -15,7 +15,7 @@ function gridCreator(numeri) {
         if (!bombs.includes(randomBomb)) {
           bombs.push(randomBomb);
         }
-    }
+    };
 
     //qwuesto for rimane invariato
     for (let i = 1; i <= numeri*numeri; i++) {
@@ -29,19 +29,26 @@ function gridCreator(numeri) {
       box.addEventListener('click', function() {     
         
         if (bombs.includes(parseInt(this.innerText))){
-            box.classList.add('bomb-color');
+          box.classList.add('bomb-color');
+          endGame.innerHTML = 
+          `
+          <h2 class="fw-bold display-4">Game Over</h2>
+          <h4 class="fw-bold"> Il tuo punteggio e: ${punteggio}</h4>
+          `;
+
         }
         else{
+          if (!box.classList.contains('clicked')) {
+            box.classList.add('clicked');
             box.classList.toggle('box-color');
+            punteggio++; 
+          }
         }
       });
       
       boxGrid.appendChild(box);
     }
 }
-
-
-
 
 // al click di questo tasto i resetta tutta la pagina (problea: se l'utente cambia griglia e clicka rest e come se generasse un campo nuovo)
 reset.addEventListener('click', function(){
@@ -58,13 +65,14 @@ reset.addEventListener('click', function(){
   }
 });
 
-// grid che rimarra fisso all'apertura della pagina 
-gridCreator(10)
-
 // il giocatore sceglie quale grid utilizzare se quello standart non gli piace 
 play.addEventListener('click', function(){
   let gridSelector = document.getElementById('gridselectror').value;
   boxGrid.innerHTML = '';
+  endGame.innerHTML = '';
+  punteggio = 0;
+  bombs = []
+
   if (gridSelector === '3'){
     gridCreator(7);
   }
@@ -76,8 +84,6 @@ play.addEventListener('click', function(){
   }
 
 });
-
-
 
 
 // trovato in rete l'algoritmo di Fisher Yates che mescola gli array in modo randomico.
