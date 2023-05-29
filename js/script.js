@@ -5,36 +5,35 @@ let play = document.getElementById('play');
 let boxGrid = document.querySelector('.grid-container');
 let reset  = document.getElementById('reset');
 let bombs = [];
-
+console.log(bombs)
 // creo la funzione per generare il grid
-function gridCreator(numeri) {
-    for (let i = 1; i <= numeri*numeri; i++) {
+// function gridCreator(numeri) {
+//     for (let i = 1; i <= numeri*numeri; i++) {
 
-      let box = document.createElement('div');
-      box.classList.add('box');
-      box.style.width = `calc(100% / ${numeri})`;
-      box.innerHTML = `<a href="#">${i}</a>`;
+//       let box = document.createElement('div');
+//       box.classList.add('box');
+//       box.style.width = `calc(100% / ${numeri})`;
+//       box.innerHTML = `<a href="#">${i}</a>`;
     
-      box.addEventListener('click', function() {
-        box.classList.toggle('box-color');
-      });
+//       box.addEventListener('click', function() {
+//         box.classList.toggle('box-color');
+//       });
       
-      boxGrid.appendChild(box);
-    }
-}
+//       boxGrid.appendChild(box);
+//     }
+// }
 
 
 //nuova funzione per implementare sia il grid che anche l'array:
 function gridCreator(numeri) {
     //un ciclo che contionua fino a quando no raggiunge i 16 elementi dell'array in modo random.
     while (bombs.length < 16) {
-        let randomArray = Math.floor(Math.random() * (numeri * numeri)) + 1;
-        if (!bombs.includes(randomArray)) {
-          bombs.push(randomArray);
+        let randomBomb = Math.floor(Math.random() * 49) + 1;
+        if (!bombs.includes(randomBomb)) {
+          bombs.push(randomBomb);
         }
     }
-
-
+    
     //qwuesto for rimane invariato
     for (let i = 1; i <= numeri*numeri; i++) {
 
@@ -44,10 +43,10 @@ function gridCreator(numeri) {
       box.innerHTML = `<a href="#">${i}</a>`;
       //modificare ad event listener dove il click sulla bomba determina il risultato e la fine della partira 
 
-      box.addEventListener('click', function() {
+      box.addEventListener('click', function() {     
         
-        if (i.include(bombs)){
-            box.classList.toggle('bomb-color');
+        if (bombs.includes(box.innerText)){
+            box.classList.add('bomb-color');
         }
         else{
             box.classList.toggle('box-color');
@@ -67,7 +66,6 @@ reset.addEventListener('click', function(){
   boxGrid.innerHTML = '';
   if (gridSelector === '3'){
     gridCreator(7);
-    let bombsRandomico = shuffleArray(bombs);
   }
   else if ( gridSelector === '2'){
     gridCreator(9);
@@ -104,12 +102,11 @@ play.addEventListener('click', function(){
 // alla variabile i dico e equivalente alla lughezza dell'array - 1 che tradotto vuol dire che deve partire dalla ultima posizione nell'indice quindi numero 16
 // siccome l'algoritmo parte dalla fine dell'array e va all'inizio i non deve essere maggiore di 0. e i-- per decrementare.
 // function shuffleArray(array) {
-//     for (let i = array.length - 1; i > 0; i--) {
-//       const j = Math.floor(Math.random() * (i));
-//       [array[i], array[j]] = [array[j], array[i]];        //con questa funzione eseguo lo scambio degli elementi all'interno dell'array
-//       }
-//     return array;
-//   }
+    // for (let i = array.length - 1; i > 0; i--) {
+    //     const j = Math.floor(Math.random() * (i));
+    //     [array[i], array[j]] = [array[j], array[i]];        //con questa funzione eseguo lo scambio degli elementi all'interno dell'array        
+    //     return array;
+    // }
   
 //   let bombsRandomico = shuffleArray(bombs);
 // non saprei porprio come integrarlo nel codice (sadness)
