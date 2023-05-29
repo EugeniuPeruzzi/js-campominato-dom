@@ -6,23 +6,6 @@ let boxGrid = document.querySelector('.grid-container');
 let reset  = document.getElementById('reset');
 let bombs = [];
 console.log(bombs)
-// creo la funzione per generare il grid
-// function gridCreator(numeri) {
-//     for (let i = 1; i <= numeri*numeri; i++) {
-
-//       let box = document.createElement('div');
-//       box.classList.add('box');
-//       box.style.width = `calc(100% / ${numeri})`;
-//       box.innerHTML = `<a href="#">${i}</a>`;
-    
-//       box.addEventListener('click', function() {
-//         box.classList.toggle('box-color');
-//       });
-      
-//       boxGrid.appendChild(box);
-//     }
-// }
-
 
 //nuova funzione per implementare sia il grid che anche l'array:
 function gridCreator(numeri) {
@@ -33,7 +16,7 @@ function gridCreator(numeri) {
           bombs.push(randomBomb);
         }
     }
-    
+
     //qwuesto for rimane invariato
     for (let i = 1; i <= numeri*numeri; i++) {
 
@@ -45,7 +28,7 @@ function gridCreator(numeri) {
 
       box.addEventListener('click', function() {     
         
-        if (bombs.includes(box.innerText)){
+        if (bombs.includes(parseInt(this.innerText))){
             box.classList.add('bomb-color');
         }
         else{
