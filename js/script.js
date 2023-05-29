@@ -4,6 +4,7 @@ let grid = document.querySelector('.grid-container');
 let play = document.getElementById('play');
 let boxGrid = document.querySelector('.grid-container');
 let reset  = document.getElementById('reset');
+let bombs = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
 
 // creo la funzione per generare il grid
 function gridCreator(numeri) {
@@ -21,12 +22,15 @@ function gridCreator(numeri) {
       boxGrid.appendChild(box);
     }
 }
+
+
 // al click di questo tasto i resetta tutta la pagina (problea: se l'utente cambia griglia e clicka rest e come se generasse un campo nuovo)
 reset.addEventListener('click', function(){
   let gridSelector = document.getElementById('gridselectror').value;
   boxGrid.innerHTML = '';
   if (gridSelector === '3'){
     gridCreator(7);
+    let bombsRandomico = shuffleArray(bombs);
   }
   else if ( gridSelector === '2'){
     gridCreator(9);
@@ -54,3 +58,20 @@ play.addEventListener('click', function(){
   }
 
 });
+
+
+
+
+// trovato in rete l'algoritmo di Fisher Yates che mescola gli array in modo randomico.
+// nota importante da segnare, l'algoritmo parte dall'ultimo elemento dell'array er procede fino al primo per questo : (let i = array.length - 1; i > 0; i--)
+// alla variabile i dico e equivalente alla lughezza dell'array - 1 che tradotto vuol dire che deve partire dalla ultima posizione nell'indice quindi numero 16
+// siccome l'algoritmo parte dalla fine dell'array e va all'inizio i non deve essere maggiore di 0. e i-- per decrementare.
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i));
+      [array[i], array[j]] = [array[j], array[i]];        //con questa funzione eseguo lo scambio degli elementi all'interno dell'array
+      }
+    return array;
+  }
+  
+//   let bombsRandomico = shuffleArray(bombs);
