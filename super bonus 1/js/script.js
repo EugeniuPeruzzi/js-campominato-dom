@@ -28,11 +28,11 @@ function gridCreator(numeri) {
       //modificare ad event listener dove il click sulla bomba determina il risultato e la fine della partira 
 
       box.addEventListener('click', function() {     
-        
+        //blocco click
         if (gameEnded){
           return;
         }
-
+        // se clicco sulla casella contente un numero dell'array delle variabile bombs
         if (bombs.includes(parseInt(this.innerText))){
           box.classList.add('bomb-color');
           endGame.innerHTML = 
@@ -42,6 +42,7 @@ function gridCreator(numeri) {
           `;
           gameEnded = true;
         }
+        // se clicco sul tasto che non contiene la bomba
         else{
           if (!box.classList.contains('clicked')) {
             box.classList.add('clicked');
@@ -59,6 +60,7 @@ function gridCreator(numeri) {
 reset.addEventListener('click', function(){
   let gridSelector = document.getElementById('gridselectror').value;
   boxGrid.innerHTML = '';
+  punteggio = 0;
   if (gridSelector === '3'){
     gridCreator(7);
   }
@@ -70,7 +72,7 @@ reset.addEventListener('click', function(){
   }
 });
 
-// il giocatore sceglie quale grid utilizzare se quello standart non gli piace 
+// genera una partita nuova 
 play.addEventListener('click', function(){
   let gridSelector = document.getElementById('gridselectror').value;
   boxGrid.innerHTML = '';
