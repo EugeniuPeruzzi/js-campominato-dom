@@ -15,3 +15,6 @@ SOLUZIONE:
 7 Unire il tutto e fare una codizione di vittoria o sconfita
     7.1 SE l'utente clicka sulla bomba Game over ed espondo il punteggio
     7.2 ALTRIMENTI se cliccato n -16 il giocatore ha vinto.
+
+SUPER BONUS 1 
+Quando si clicca su una bomba e finisce la partita, evitare che si possa cliccare su altre celle.
