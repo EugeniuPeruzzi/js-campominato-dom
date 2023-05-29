@@ -14,7 +14,7 @@ function gridCreator(numeri) {
       box.classList.add('box');
       box.style.width = `calc(100% / ${numeri})`;
       box.innerHTML = `<a href="#">${i}</a>`;
-      
+    
       box.addEventListener('click', function() {
         box.classList.toggle('box-color');
       });
@@ -26,7 +26,7 @@ function gridCreator(numeri) {
 
 //nuova funzione per implementare sia il grid che anche l'array:
 function gridCreator(numeri) {
-    //un ciclo che contionua fino a quando no raggiunge i 16 array in modo random.
+    //un ciclo che contionua fino a quando no raggiunge i 16 elementi dell'array in modo random.
     while (bombs.length < 16) {
         let randomArray = Math.floor(Math.random() * (numeri * numeri)) + 1;
         if (!bombs.includes(randomArray)) {
@@ -35,16 +35,23 @@ function gridCreator(numeri) {
     }
 
 
-
+    //qwuesto for rimane invariato
     for (let i = 1; i <= numeri*numeri; i++) {
 
       let box = document.createElement('div');
       box.classList.add('box');
       box.style.width = `calc(100% / ${numeri})`;
       box.innerHTML = `<a href="#">${i}</a>`;
-      
+      //modificare ad event listener dove il click sulla bomba determina il risultato e la fine della partira 
+
       box.addEventListener('click', function() {
-        box.classList.toggle('box-color');
+        
+        if (i.include(bombs)){
+            box.classList.toggle('bomb-color');
+        }
+        else{
+            box.classList.toggle('box-color');
+        }
       });
       
       boxGrid.appendChild(box);
