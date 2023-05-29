@@ -23,13 +23,34 @@ function gridCreator(numeri) {
 }
 // al click di questo tasto i resetta tutta la pagina (problea: se l'utente cambia griglia e clicka rest e come se generasse un campo nuovo)
 reset.addEventListener('click', function(){
-
+  let gridSelector = document.getElementById('gridselectror').value;
   boxGrid.innerHTML = '';
-
-  gridCreator(10);
-
+  if (gridSelector === '3'){
+    gridCreator(7);
+  }
+  else if ( gridSelector === '2'){
+    gridCreator(9);
+  }
+  else{
+    gridCreator(10);
+  }
 });
 
 // grid che rimarra fisso all'apertura della pagina 
 gridCreator(10)
 
+// il giocatore sceglie quale grid utilizzare se quello standart non gli piace 
+play.addEventListener('click', function(){
+  let gridSelector = document.getElementById('gridselectror').value;
+  boxGrid.innerHTML = '';
+  if (gridSelector === '3'){
+    gridCreator(7);
+  }
+  else if ( gridSelector === '2'){
+    gridCreator(9);
+  }
+  else{
+    gridCreator(10);
+  }
+
+});
