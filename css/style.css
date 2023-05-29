@@ -3,3 +3,43 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+body{
+    background-color: blueviolet;
+}
+
+.white{
+    color: white;
+}
+
+.yellow{
+    color: rgb(255, 187, 0);
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+
+.grid-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.box{
+    border: 2px solid blueviolet;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    background-color: aqua;
+    height: 100px;
+}
+
+.box-color{
+    transform: scale(0.9);
+    background-color: yellow;
+}
